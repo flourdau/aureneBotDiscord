@@ -1,5 +1,5 @@
 const fs                            =   require('fs');
-const { Client, Collection, MessageEmbed }        =   require('discord.js');
+const { Client, Collection }        =   require('discord.js');
 const { prefix, token, emojiBot }   =   require('./config.json');
 const tabBonjour                    =   require('../dicosJSON/bonjour.json');
 
@@ -179,9 +179,9 @@ client.on("messageReactionAdd", async (reaction, user) => {
             client.channels.resolve("862769534757502980").send(`${tmp}`);
         }
         
-        console.log(tmp);
+        
         // Reply to a Reaction
-        reaction.message.reply(`Merci <@${user.id}>!.. : )`)
+        reaction.message.reply(`Merci et <@${user.id}> aussi!.. : )`)
         .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
         .catch(console.error);
 
