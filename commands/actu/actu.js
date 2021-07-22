@@ -17,12 +17,14 @@ module.exports  =   {
 
 		setTimeout(function() {
             if (args[0]) {
-                message.channel.send(`!meteo ${args[0]} -full`);
+                message.channel.send(`!meteo ${args[0]} ${args[1]}`);
             }
             if (args[1] === '-full' || args[1] === '-f') {
                 message.channel.send('https://www.youtube.com/playlist?list=UUqt99sKYNTxqlHtzV9weUYA&playnext=1&index=1');
+                message.channel.send('!mort',);
             }
             message.channel.send('https://www.youtube.com/playlist?list=PLCnUnV3yCIYuuHRjVDwiBaRDeSbEbGyZU&playnext=1&index=1');
+
         },      1000);
 
 	},

@@ -25,7 +25,7 @@ module.exports  =   {
                 if (message.channel.type !== 'dm') {
                     message.delete();
                 }
-                message.channel.send(`${emojiBot} <@${message.author.id}> is dead ${deaths} times! ^^`);
+                message.channel.send(`${emojiBot} <@270810792612462592> est morte ${deaths} fois! ^^`);
             });
         })
         .on('error', (e) => {

@@ -14,7 +14,8 @@ module.exports  =    {
 	execute(message) {
 
         const attachment    =   new MessageAttachment('https://i.imgur.com/mV9JF2y.gif');
-
+        console.log(attachment);
+        
         if (message.channel.type !== 'dm') {
             message.delete();
         }
