@@ -1,0 +1,8 @@
+{
+	"prefix"                :       "!",
+	"emojiBot"              :       "🤖",
+	"rulesChannelID"		:		"YOUR-ID-RULES-CHANNEL",
+	"token"                 :       "YOUR-BOT-API",
+	"APIGW2"                :       "YOUR-API-GW2",
+	"openweathermap"        :       "YOUR-API-OPENWEATHERMAP"
+}
