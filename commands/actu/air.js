@@ -1,89 +1,73 @@
-const https                 		=   require('https');
-const { MessageEmbed }			=   require('discord.js');
+const fetch                 =   require('node-fetch');
+const { MessageEmbed }		=   require('discord.js');
 const { openweathermap }	=	require('../../config.json');
+
+/*
+**	On execute 2 requetes https, une (Weather) pour reccuperer les coordonnée GPS 
+**	& l'autre (Air Quality) pour reccuperer la data...
+*/
 module.exports	=	{
 
 	name	        :	'air',
 	aliases         :   ['aqi'],
 	description     :   'Qualité de l\'air par coordonné GPS avec OpenWeatherMap',
     usage           :   '<ville> -full',	
-    guildOnly       :   true,
+    guildOnly       :   false,
 	args        	:   true,
-	cooldown        :   15,
+	cooldown        :   30,
 
-	execute(message, args, client) {
-		// On execute 2 requetes https, une pour reccuperer les coordonnée GPS & l'autre pour reccuperer la data...
+	async execute(message, args) {
 
-		let city = args[0];
+		if (message.channel.type !== 'dm') {
+			message.delete();
+		}
+		
+		if (args[0] === '-full' || args[0] === '-f') {
+			message.channel.send(`ERROR! XD`);
+			return;
+		}
+		
+		let city		=	args[0];
+
 		let requestURL	=	`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openweathermap}&units=metric&lang=fr`;
+		let meteo		=	await fetch(requestURL).then(res => res.json())
+													.catch(console.error);
 
-        https.get(requestURL, (res) => {
+		let requestURL2	=	`https://api.openweathermap.org/data/2.5/air_pollution?lat=${meteo.coord.lat}&lon=${meteo.coord.lon}&appid=${openweathermap}&units=metric&lang=fr`;
+		let air			=	await fetch(requestURL2).then(res => res.json())
+													.catch(console.error);
 
-            res.on('data', (d) => {
+		let title		=	`${air.list[0].main.aqi}/5 Aqi`;
+		let fields 		=	[];
 
-                if (message.channel.type !== 'dm') {
-					message.delete();
-                }
-				
-				if (res.statusCode !== 200 || args[0] === '-full' || args[0] === '-f') {
-	                message.channel.send(`ERROR! XD`);
-					return;
-				}
+		if (args[1] === '-full' || args[1] === '-f') {
+			fields	=	[
+							{ name	:	`\u200B`, value	:	`**CO**		: *Monoxyde de Carbone*\n**${air.list[0].components.co}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value	:	`**NO** 	: *Monoxyde d\'Azote*\n**${air.list[0].components.no}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value :	`\u200B`, inline: false },
+							{ name	:	`\u200B`, value	:	`**NO2**	: *Dioxyde d\'Ozone*\n**${air.list[0].components.no2}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value	:	`**O3**		: *Ozone*\n**${air.list[0].components.o3}** μg/m3`, inline: true },
+							{ name	:	`\u200B`,value	:	`\u200B`, inline: false },
+							{ name	:	`\u200B`, value	:	`**SO2**	: *Dioxyde de Soufre*\n**${air.list[0].components.so2}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value	:	`**PM2_5**	: *Particules Fines*\n**${air.list[0].components.pm2_5}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value	:	`\u200B`, inline: false },
+							{ name	:	`\u200B`, value	:	`**PM10**	: *Particules Grossières*\n**${air.list[0].components.pm10}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value	:	`**NH3**	: *Ammoniac*\n**${air.list[0].components.nh3}** μg/m3`, inline: true },
+							{ name	:	`\u200B`, value	:	`\u200B`, inline: false }
+						];
+		}
 
-				d						=	JSON.parse(d);
-				let icon				=	"http://openweathermap.org/img/w/" + d.weather[0].icon + ".png";
-				let title				=	`**${city}** : `;
-				let author				=	client.user.username;
-				let authorAvatar		=	`https://cdn.discordapp.com/avatars/${client.user.id}/${client.user.avatar}.webp`;
-				let lat					=	d.coord.lat;
-				let lon					=	d.coord.lon;
-				let requestURL2			=	`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${openweathermap}&units=metric&lang=fr`;
+		const airEmbed = new MessageEmbed()
+			.setColor('#0099ff')
+			.setTitle(title)
+			.setURL('https://openweathermap.org/')
+			.setFooter('Source : https://openweathermap.org/');
 
-				https.get(requestURL2, (res2) => {
-					res2.on('data', (d2) => {
-						
-						d2				=	JSON.parse(d2);
-						let fieldAqi	=	{ name	:	`Aqi:`,	value:d2.list[0].main.aqi,	inline: true };
-						let fields 		=	[fieldAqi];
-
-						if (args[1] === '-full' || args[1] === '-f') {
-							let tmpTab	=	[
-												{ name	:	`\u200B`,		value:`\u200B`, inline: false },
-												{ name	:	`CO:`,	value:d2.list[0].components.co, inline: true },
-												{ name	:	`no:`,	value:d2.list[0].components.no, inline: true },
-												{ name	:	`no2:`,	value:d2.list[0].components.no2, inline: true },
-												{ name	:	`o3:`,	value:d2.list[0].components.o3, inline: true },
-												{ name	:	`so2:`,	value:d2.list[0].components.so2, inline: true },
-												{ name	:	`pm2_5:`,	value:d2.list[0].components.pm2_5, inline: true },
-												{ name	:	`pm10:`,	value:d2.list[0].components.pm10, inline: true },
-												{ name	:	`nh3:`,	value:d2.list[0].components.nh3, inline: true },
-												{ name	:	`\u200B`,		value:`\u200B`, inline: true }
-											];
-		
-							fields = fields.concat(tmpTab);
-
-						}
-
-						const meteoEmbed = new MessageEmbed()
-							.setColor('#0099ff')
-							.setTitle(title)
-							.setURL('https://openweathermap.org/')
-							.setAuthor(author, authorAvatar, 'https://discord.js.org')
-							.setFooter('Meteo by https://openweathermap.org/');
-		
-						fields.forEach(element => {
-							meteoEmbed.addField(element.name,element.value,element.inline)
-						});
-						message.channel.send(meteoEmbed);
-						return;
-					});
-				})
-				.on('error', (e2) => {console.error(e2);});
-	        });
-		})
-		.on('error', (e) => {
-			console.error(e);
+		fields.forEach(element => {
+			airEmbed.addField(element.name,element.value,element.inline)
 		});
+
+		message.channel.send(airEmbed);
 
 	},
 

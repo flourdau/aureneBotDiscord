@@ -1,4 +1,4 @@
-const https                 =   require('https');
+const fetch                 =   require('node-fetch');
 const { APIGW2, emojiBot }  =   require('../../config.json');
 
 module.exports  =   {
@@ -8,29 +8,19 @@ module.exports  =   {
     usage       :   false,	
     guildOnly   :   false,
 	args        :   false,
-    cooldown    :   15,
+    cooldown    :   60,
 	// permissions  :   '🌻Administrateur🌻',
 
-    execute(message) {
+    async execute(message) {
 
         let requestURL  =   `https://api.guildwars2.com/v2/characters/Senacra%20Flora%20Haze/core?access_token=${APIGW2}`;
+		let gw2		    =	await fetch(requestURL).then(res => res.json())
+                                                    .catch(console.error);
 
-        https.get(requestURL, (res) => {
-            // console.log('statusCode:', res.statusCode);
-            // console.log('headers:', res.headers);
-
-            res.on('data', (d) => {
-                let deaths = JSON.parse(d).deaths;
-
-                if (message.channel.type !== 'dm') {
-                    message.delete();
-                }
-                message.channel.send(`${emojiBot} <@270810792612462592> est morte ${deaths} fois! ^^`);
-            });
-        })
-        .on('error', (e) => {
-            console.error(e);
-        });
+        if (message.channel.type !== 'dm') {
+            message.delete();
+        }
+        message.channel.send(`${emojiBot} <@270810792612462592> est morte ${gw2.deaths} fois! ^^`);
 
 	},
 

@@ -4,7 +4,7 @@ const { prefix, emojiBot }	=	require('../../config.json');
 module.exports	=	{
 
 	name        :   'reload',
-	aliases     :   ['recharge'],
+	aliases     :   ['recharge', 'rl'],
 	description :   'Recharge une command',
 	usage       :   '<command name>',	
     guildOnly   :   false,

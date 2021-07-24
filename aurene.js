@@ -1,4 +1,25 @@
+//  NEED HELP 4 CREATE A LIBRARY...
+const myDate = function getMyDate() {
+
+    let d = new Date();
+    let local   = 'fr-FR';
+    let options = {weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"};
+    let myDate  = d.toLocaleDateString(local, options)
+                    .toLowerCase()
+                    .split(' ')
+                    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+                    .join(' ');
+    let myHour  = d.toLocaleTimeString(local);
+
+    return { 'myDate' : myDate, 'myHour' : myHour };
+
+}
+
 const fs                            =   require('fs');
+const fetch                         =   require('node-fetch');
 const { Client, Collection }        =   require('discord.js');
 const { prefix, token, emojiBot }   =   require('./config.json');
 const tabBonjour                    =   require('../dicosJSON/bonjour.json');
@@ -10,6 +31,8 @@ const client                        =   new Client({
         "REACTION"
     ]
 });
+
+client.myDate                       =   myDate;
 client.commands                     =   new Collection();
 client.cooldowns                    =   new Collection();
 client.aliases                      =   new Collection();
@@ -27,7 +50,9 @@ for (const folder of commandFolders) {
 
 // Bot ready
 client.once('ready', () => {
-    console.log(`${emojiBot} I am Ready!`);
+    let d = myDate();
+    console.log(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up!`);
+    client.channels.resolve("862769536289734669").send(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up! <@270810792612462592>`);
     // client.user.setPresence({
     //     activity: {
     //         name:'Hello World!'
@@ -41,14 +66,14 @@ client.once('ready', () => {
 
 
 // Commands & Actions
-client.on('message', message => {
+client.on('message', async message => {
 
     // Reaction 🎁 & crosspost of all messages in channel Gift: 862769534757502980
     if ((message.channel.id === '862769534757502980') && (message.channel.type === 'news')) {
             message.react('🎁');
             message.crosspost()
-              .then(() => console.log('Crossposted message'))
-              .catch(console.error);
+                    .then(() => console.log('Crossposted message'))
+                    .catch(console.error);
     }
     
     // Bonjour
