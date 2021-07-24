@@ -1,9 +1,10 @@
 const { token }   =   require('../../config.json');
+const { emojiBot }	=	require('../../config.json');
 
 module.exports	=	{
 
 	name        :   'resetbot',
-	aliases     :   ['reset', 'restart'],
+	aliases     :   ['reset', 'restart', 'reboot'],
 	description :   'Reset le bot! Enfin... ...je crois...XD',
 	usage       :   false,	
     guildOnly   :   true,
@@ -13,13 +14,9 @@ module.exports	=	{
 
 	execute(message, NULL, client) {
 
-		function resetBot(channel, client) {
-			channel.send('Resetting...')
-			.then(msg => client.destroy(console.log('die')))
-			.then(() => client.login(token));
-		}
-
-		resetBot(message.channel, client);
+		message.channel.send(`${emojiBot} Resetting...`)
+				.then(msg => client.destroy(console.log(`${emojiBot} Resetting...`)))
+				.then(() => client.login(token));
 
 	},
 

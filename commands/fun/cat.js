@@ -12,11 +12,13 @@ module.exports	=	{
 	// permissions	:	'🌻Administrateur🌻',
 
 	async execute(message) {
-
-        const { file }	=	await fetch('https://aws.random.cat/meow')
-									.then(response => response.json())
-									.catch(console.error);
-
+		
+		const { file }	=	await fetch('https://aws.random.cat/meow').then(response => response.json())
+																		.catch(console.error);
+		
+        if (message.channel.type !== 'dm') {
+            message.delete();
+        }
         message.channel.send(file);
 
 	},

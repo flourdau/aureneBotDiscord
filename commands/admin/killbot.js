@@ -4,21 +4,17 @@ module.exports	=	{
 
 	name        :   'killbot',
 	aliases     :   ['die', 'shutdown', 'stop'],
-	description :   'Tue le bot! RIP le bot',
+	description :   '💀 Tue Aurène! RIP Aurène...',
 	usage       :   false,	
     guildOnly   :   false,
 	args		:   false,
     cooldown    :   1,
 	// permissions :   '🌻Administrateur🌻',
 
-	execute(message, args, client) {
+	execute(message) {
 
-		function killBot(channel, client) {
-			channel.send(`${emojiBot}Bye...`)
-			.then(msg => client.destroy(console.log('die')));
-		}
-
-		killBot(message.channel, client);
+		message.channel.send(`${emojiBot} Bye...`)
+				.then(msg => process.exit(console.log(`${emojiBot} Bye...`)));
 
 	},
 

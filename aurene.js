@@ -19,7 +19,6 @@ const myDate = function getMyDate() {
 }
 
 const fs                            =   require('fs');
-const fetch                         =   require('node-fetch');
 const { Client, Collection }        =   require('discord.js');
 const { prefix, token, emojiBot }   =   require('./config.json');
 const tabBonjour                    =   require('../dicosJSON/bonjour.json');
@@ -53,16 +52,16 @@ client.once('ready', () => {
     let d = myDate();
     console.log(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up!`);
     client.channels.resolve("862769536289734669").send(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up! <@270810792612462592>`);
-    // client.user.setPresence({
-    //     activity: {
-    //         name:'Hello World!'
-    //     }, 
-    //     status: 'dnd'
-    // })
-    // .then(console.log)
-    // .catch(console.error)
-}
-);
+    client.user.setPresence({ activity: {
+                                name:'!help',
+                                type:'LISTENING'
+                            }, 
+                            status: 'online'
+                        })
+                .then()
+                .catch(console.error);
+
+});
 
 
 // Commands & Actions
@@ -93,19 +92,19 @@ client.on('message', async message => {
     // COMMANDS & ALIASES
     const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
     if (!command) {
-        return message.reply('that\'s not a valid command!');
+        return message.reply('command Invalide!..');
     }
 
     //  ONLY DM
     if (command.guildOnly && message.channel.type === 'dm') {
-        return message.reply('Je ne peux pas executer cette commande en privé, désolé!');
+        return message.reply('je ne peux pas executer cette commande en privé, désolé!');
     }
 
     //  PERMISSIONS
     if (command.permissions) {
         const authorPerms = message.channel.permissionsFor(message.author);
         if (!authorPerms || !authorPerms.has(command.permissions)) {
-            return message.reply('Pas de permission, désolé!');
+            return message.reply('pas de permission, désolé!');
         }
     }
 
