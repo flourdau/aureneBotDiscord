@@ -1,6 +1,7 @@
-const { Collection }                =   require('discord.js');
-const { prefix, token, emojiBot }   =   require('../config.json');
-const tabBonjour                    =   require('../../dicosJSON/bonjour.json');
+const { Collection }        =   require('discord.js');
+const { prefix, emojiBot }  =   require('../config.json');
+const tabBonjour            =   require('../../dicosJSON/bonjour.json');
+const tabAcclamation            =   require('../../dicosJSON/acclamation.json');
 
 module.exports = {
 
@@ -8,6 +9,7 @@ module.exports = {
 
 	execute(message, client) {
 
+		console.log(`${message.author.tag} in #${message.channel.name} sent: ${message.content}`);
         // Reaction 🎁 & crosspost of all messages in channel Gift: 862769534757502980
         if ((message.channel.id === '862769534757502980') && (message.channel.type === 'news')) {
             message.react('🎁');
@@ -16,6 +18,14 @@ module.exports = {
                     .catch(console.error);
         }
 
+        // Reaction 💗 & crosspost of all messages in channel Gift: 862769534757502980
+        if ((message.channel.id === '864464984360091668') && (message.channel.type === 'news')) {
+            message.react('💗');
+            message.crosspost()
+                    .then(() => console.log('Crossposted message 💗'))
+                    .catch(console.error);
+        }
+        
         // Bonjour
         if ((message.content.indexOf("bonjour") !== -1) && (!message.author.bot)) {
             setTimeout(function() {
@@ -23,6 +33,13 @@ module.exports = {
             }, 1000);
         }
 
+        // Youpi
+        if ((message.content.indexOf("youpi") !== -1) && (!message.author.bot)) {
+            setTimeout(function() {
+                message.channel.send(`${emojiBot} ` + tabAcclamation[Math.floor(Math.random() * tabAcclamation.length)] + `<@${message.author.id}>!`)
+            }, 1000);
+        }
+        
         if (!message.content.startsWith(prefix) ) {
             return;
         }
@@ -92,7 +109,6 @@ module.exports = {
             message.reply('Erreur pendant l\'éxecution de la command!');
         }
 
-		console.log(`${message.author.tag} in #${message.channel.name} sent: ${message.content}`);
 
 	}
 

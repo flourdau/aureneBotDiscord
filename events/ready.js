@@ -7,18 +7,15 @@ module.exports = {
 
 	execute(client) {
         let d = client.myDate();
-        console.log(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up!`);
-        client.channels.resolve("862769536289734669").send(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up! Logged in as ${client.user.username} <@270810792612462592>`);
+        console.log(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up!\n`);
+        client.channels.resolve("862769536289734669").send(`${emojiBot} ${d.myDate} ${d.myHour} I'm Up!\nLogged in as ${client.user.username} <@270810792612462592>`);
         client.user.setPresence({ activity: {
-                                    name:'!help',
+                                    name:'🎶🎵🌟',
                                     type:'LISTENING'
                                 }, 
-                                status: 'online'
-                            })
+                                status: 'online'})
                     .then()
                     .catch(console.error);
-                    
-                    console.log(``);
-                },
+    },
 
 };

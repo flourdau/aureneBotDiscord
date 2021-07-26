@@ -1,5 +1,5 @@
 //  NEED HELP 4 CREATE A LIBRARY...
-const myDate = function getMyDate() {
+const myDate                    =  function getMyDate() {
 
     let d = new Date();
     let local   = 'fr-FR';
@@ -18,11 +18,11 @@ const myDate = function getMyDate() {
 
 }
 
-const fs                            =   require('fs');
-const { Client, Collection }        =   require('discord.js');
-const { token }                     =   require('./config.json');
+const fs                        =   require('fs');
+const { Client, Collection }    =   require('discord.js');
+const { token }                 =   require('./config.json');
 
-const client                        =   new Client({
+const client                    =   new Client({
     partials: [
         "GUILD_MEMBER",
         "MESSAGE",
@@ -31,12 +31,12 @@ const client                        =   new Client({
     ]
 });
 
-client.myDate                       =   myDate;
-client.commands                     =   new Collection();
-client.cooldowns                    =   new Collection();
-client.aliases                      =   new Collection();
+client.myDate                   =   myDate;
+client.commands                 =   new Collection();
+client.cooldowns                =   new Collection();
+client.aliases                  =   new Collection();
 
-const eventFiles                    =   fs.readdirSync('./events')
+const eventFiles                =   fs.readdirSync('./events')
                                             .filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
@@ -51,7 +51,7 @@ for (const file of eventFiles) {
 
 }
 
-const commandFolders                =   fs.readdirSync('./commands');
+const commandFolders            =   fs.readdirSync('./commands');
 
 for (const folder of commandFolders) {
 	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@discordjs/node-pre-gyp": "^0.4.0",
+    "@discordjs/opus": "^0.5.3",
+    "discord.js": "^12.5.3",
+    "ytdl-core": "^4.9.0"
+  }
+}

@@ -6,7 +6,7 @@ module.exports = {
 
 	async execute(reaction, user, client) {
 
-        if ((reaction.message.id === "863147783111573545" || reaction.message.id === "862796269960822824"  )&& reaction.emoji.name === "💗") {
+        if ((reaction.message.id === "863147783111573545" || reaction.message.id === "862796269960822824"  ) && reaction.emoji.name === "💗") {
 
             try {
                 await reaction.fetch();
@@ -20,7 +20,7 @@ module.exports = {
             let member = reaction.message.guild.members.cache.get(user.id);
             
             try {
-                    await member.send(`${emojiBot} Tu possédes un petit pouvoir <@${member.id}>, te voilà automatiquement ${role.name}!`);
+                await member.send(`${emojiBot} Tu possédes un petit pouvoir <@${member.id}>, te voilà automatiquement ${role.name}!`);
             }
             catch (error) {
                 console.log(error);
