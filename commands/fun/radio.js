@@ -1,3 +1,6 @@
+const fs    =   require('fs');
+const mm    =   require('music-metadata');
+
 module.exports  =    {
 
 	name        :   'radio',
@@ -11,24 +14,32 @@ module.exports  =    {
 
 	execute(message, args, client) {
 
-        let channelID   =   `862769535597281300`;
-        let channel     =   client.channels.resolve(channelID);
-        
-        if (message.channel.type !== 'dm') {
-            message.delete();
-        }
-        channel.join()
-                .then(connection => {
-                    if (!args[1]) {
-                        args[1] = '/home/senacra/myDEPOTS/aureneBotDiscord/musics/06.mp3';
-                    }
+        function parseFiles(audioFiles, connection) {
 
-                    const broadcast = client.voice.createBroadcast();
+            const audioFile =   audioFiles.shift();
+            const pathDir   =   '/home/senacra/myDEPOTS/aureneBotDiscord/musics/';
 
-                    broadcast.play(args.join(``));
+            if (audioFile) {
+                return mm.parseFile(pathDir + audioFile).then(metadata => {
+                    const duration = (Math.floor(metadata.format.duration) * 1000) + 3000;
+
+                    broadcast.play(pathDir + audioFile);
                     connection.play(broadcast);
+                    setTimeout(function() {
+                        return parseFiles(audioFiles, connection);
+                    }, duration);
                 })
-                .catch(err => console.log(err));
-	},
+            }
+            return Promise.resolve();
+        }
+
+            
+        const channelID     =   `862769535597281300`;
+        const channel       =   client.channels.resolve(channelID);
+        const mp3Files      =   fs.readdirSync('./musics').filter(file => file.endsWith('.mp3'));
+        const broadcast     =   client.voice.createBroadcast();
+
+        channel.join().then(connection => { parseFiles(mp3Files, connection); });
+	}
 
 };

@@ -2,17 +2,16 @@ const  ytdl  = require('ytdl-core');
 
 module.exports  =    {
 
-	name        :   'youtube',
+    name        :   'youtube',
     aliases     :   ['yt'],
-	description :   'Lecture d\'une video youtube avec audio en 96kbps max...🎵',	
-    usage       :   '<URL YouTube> <quality> max 96',	
+    description :   'Lecture d\'une video youtube avec audio en 96kbps max...🎵',
+    usage       :   '<URL YouTube> <quality> max 96',
     guildOnly   :   false,
     args        :   true,
     cooldown    :   5,
         // permissions  :   '🌻Administrateur🌻',
 
 	execute(message, args, client) {
-
 
         let channelID   =   `862769535597281300`;
         let channel     =   client.channels.resolve(channelID);
