@@ -14,8 +14,8 @@ module.exports  =    {
 
 	execute(message, args, client) {
 
-        function parseFiles(audioFiles, connection) {
 
+        function parseFiles(audioFiles, connection) {
             const audioFile =   audioFiles.shift();
             const pathDir   =   '/home/senacra/myDEPOTS/aureneBotDiscord/musics/';
 
@@ -36,10 +36,11 @@ module.exports  =    {
             
         const channelID     =   `862769535597281300`;
         const channel       =   client.channels.resolve(channelID);
-        const mp3Files      =   fs.readdirSync('./musics').filter(file => file.endsWith('.mp3'));
         const broadcast     =   client.voice.createBroadcast();
+        let allFiles        =   fs.readdirSync('./musics');
 
-        channel.join().then(connection => { parseFiles(mp3Files, connection); });
+        channel.join().then(connection => { parseFiles(allFiles.filter(file => file.endsWith('.mp3'))
+                                                        .concat(allFiles.filter(file => file.endsWith('.flac'))), connection); });
 	}
 
 };
