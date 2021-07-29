@@ -1,7 +1,7 @@
 //  NEED HELP 4 CREATE A LIBRARY...
 const myDate                    =  function getMyDate() {
 
-    let d = new Date();
+    let d       = new Date();
     let local   = 'fr-FR';
     let options = {weekday: "long",
                     year: "numeric",
@@ -37,7 +37,7 @@ client.cooldowns                =   new Collection();
 client.aliases                  =   new Collection();
 
 const eventFiles                =   fs.readdirSync('./events')
-                                            .filter(file => file.endsWith('.js'));
+                                        .filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
     const event = require(`./events/${file}`);

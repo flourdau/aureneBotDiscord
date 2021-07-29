@@ -4,7 +4,7 @@ module.exports	=	{
 
 	name		:	'cat',
 	aliases		:	['chat', 'miaou', '😺'],
-	description	:	'Miaou! 😺',
+	description	:	'Miaou! 😺 COMMAND BUG XD!!!',
     usage		:	false,	
     guildOnly	:	false,
 	args		:	false,
@@ -13,13 +13,16 @@ module.exports	=	{
 
 	async execute(message) {
 		
-		const { file }	=	await fetch('https://aws.random.cat/meow').then(response => response.json())
-																		.catch(console.error);
-		
-        if (message.channel.type !== 'dm') {
-            message.delete();
-        }
-        message.channel.send(file);
+		const response = await fetch('https://aws.random.cat/meow');
+		let file = {file:false};
+
+		if (message.channel.type !== 'dm') {
+			message.delete();
+		}
+		if (response.ok) {
+			file = await response.json();
+			message.channel.send(file.file);
+		}
 
 	},
 

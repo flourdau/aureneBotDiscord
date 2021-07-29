@@ -6,7 +6,7 @@ module.exports  =    {
 	name        :   'radio',
     aliases     :   ['music'],
 	description :   'Lecture d\'un titre locale...🎵',	
-    usage       :   '<URL>',	
+    usage       :   '<shuffle> <directory name>',	
     guildOnly   :   false,
     args        :   false,
     cooldown    :   5,
@@ -15,9 +15,17 @@ module.exports  =    {
 	execute(message, args, client) {
 
 
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+
         function parseFiles(audioFiles, connection) {
             const audioFile =   audioFiles.shift();
-            const pathDir   =   '/home/senacra/myDEPOTS/aureneBotDiscord/musics/';
 
             if (audioFile) {
                 return mm.parseFile(pathDir + audioFile).then(metadata => {
@@ -25,6 +33,11 @@ module.exports  =    {
 
                     broadcast.play(pathDir + audioFile);
                     connection.play(broadcast);
+                    client.user.setPresence({ activity: {
+                        name:`${metadata.common.title} - ${metadata.common.artist} 🎶🎵🌟`,
+                        type:'LISTENING'
+                    }, 
+                    status: 'online'})
                     setTimeout(function() {
                         return parseFiles(audioFiles, connection);
                     }, duration);
@@ -33,14 +46,63 @@ module.exports  =    {
             return Promise.resolve();
         }
 
-            
+ 
         const channelID     =   `862769535597281300`;
         const channel       =   client.channels.resolve(channelID);
         const broadcast     =   client.voice.createBroadcast();
-        let allFiles        =   fs.readdirSync('./musics');
+        let pathDir         =   './musics/';
+        let shuffle         =   0;
+        client.musics       =   [];
+        let i               =   -1;
 
-        channel.join().then(connection => { parseFiles(allFiles.filter(file => file.endsWith('.mp3'))
-                                                        .concat(allFiles.filter(file => file.endsWith('.flac'))), connection); });
-	}
+        if (args[0] === 'shuffle') {
+            shuffle = 1;
+            args.shift();
+        }
+        
+        if (args[0]) {
+            pathDir = pathDir.concat(args.join(` `) + `/`);
+        }
+        const musicsFolders =   fs.readdirSync(pathDir);
+
+        for (const folder of musicsFolders) {
+            let filterFolder = [];
+            let musicsFolder = [];
+            let flag = 0;
+
+            if (fs.lstatSync(`${pathDir}${folder}`).isDirectory())
+                musicsFolder = fs.readdirSync(`${pathDir}${folder}`);
+            else {
+                flag = 1;
+                musicsFolder = musicsFolders;
+            }
+
+            filterFolder = musicsFolder.filter(file => file.endsWith('.mp3'));
+            filterFolder = filterFolder.concat(musicsFolder.filter(file => file.endsWith('.flac')));
+            filterFolder = filterFolder.concat(musicsFolder.filter(file => file.endsWith('.webm')));
+
+            for (musicFile of filterFolder) {
+                if (flag === 0) {
+                    client.musics[++i] = `${folder}/` + musicFile;
+                }
+                else {
+                    client.musics[++i] = `/` + musicFile;
+                }
+            }
+            if (flag === 1) {
+                break;
+            }
+
+        }
+
+        if (shuffle === 1) {
+            client.musics = shuffleArray(client.musics);
+        }
+
+        if (message.channel.type !== 'dm') {
+            message.delete();
+        }
+        channel.join().then(connection => { parseFiles(client.musics, connection); });
+ 	}
 
 };
