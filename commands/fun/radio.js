@@ -29,15 +29,15 @@ module.exports  =    {
 
             if (audioFile) {
                 return mm.parseFile(pathDir + audioFile).then(metadata => {
-                    const duration = (Math.floor(metadata.format.duration) * 1000) + 3000;
+                    const duration  =   (Math.floor(metadata.format.duration) * 1000) + 3000;
 
                     broadcast.play(pathDir + audioFile);
                     connection.play(broadcast);
                     client.user.setPresence({ activity: {
-                        name:`${metadata.common.title} - ${metadata.common.artist} 🎶🎵🌟`,
-                        type:'LISTENING'
-                    }, 
-                    status: 'online'})
+                                                name:`${metadata.common.title} - ${metadata.common.artist} 🎶🎵🌟`,
+                                                type:'LISTENING'
+                                            }, 
+                                            status: 'online'});
                     setTimeout(function() {
                         return parseFiles(audioFiles, connection);
                     }, duration);
@@ -47,46 +47,47 @@ module.exports  =    {
         }
 
  
-        const channelID     =   `862769535597281300`;
+        const channelID     =   `868986550367711282`;
         const channel       =   client.channels.resolve(channelID);
         const broadcast     =   client.voice.createBroadcast();
         let pathDir         =   './musics/';
         let shuffle         =   0;
-        client.musics       =   [];
         let i               =   -1;
+        client.musics       =   [];
 
         if (args[0] === 'shuffle') {
-            shuffle = 1;
+            shuffle =   1;
             args.shift();
         }
         
         if (args[0]) {
-            pathDir = pathDir.concat(args.join(` `) + `/`);
+            pathDir =   pathDir.concat(args.join(` `) + `/`);
         }
         const musicsFolders =   fs.readdirSync(pathDir);
 
         for (const folder of musicsFolders) {
-            let filterFolder = [];
-            let musicsFolder = [];
-            let flag = 0;
+            let filterFolder    =   [];
+            let musicsFolder    =   [];
+            let flag            =   0;
 
-            if (fs.lstatSync(`${pathDir}${folder}`).isDirectory())
-                musicsFolder = fs.readdirSync(`${pathDir}${folder}`);
+            if (fs.lstatSync(`${pathDir}${folder}`).isDirectory()) {
+                musicsFolder    =  fs.readdirSync(`${pathDir}${folder}`);
+            }
             else {
                 flag = 1;
-                musicsFolder = musicsFolders;
+                musicsFolder    =  musicsFolders;
             }
 
-            filterFolder = musicsFolder.filter(file => file.endsWith('.mp3'));
-            filterFolder = filterFolder.concat(musicsFolder.filter(file => file.endsWith('.flac')));
-            filterFolder = filterFolder.concat(musicsFolder.filter(file => file.endsWith('.webm')));
+            filterFolder    =   musicsFolder.filter(file => file.endsWith('.mp3'));
+            filterFolder    =   filterFolder.concat(musicsFolder.filter(file => file.endsWith('.flac')));
+            filterFolder    =   filterFolder.concat(musicsFolder.filter(file => file.endsWith('.webm')));
 
             for (musicFile of filterFolder) {
                 if (flag === 0) {
-                    client.musics[++i] = `${folder}/` + musicFile;
+                    client.musics[++i]  =   `${folder}/` + musicFile;
                 }
                 else {
-                    client.musics[++i] = `/` + musicFile;
+                    client.musics[++i]  =   `/` + musicFile;
                 }
             }
             if (flag === 1) {
@@ -96,7 +97,7 @@ module.exports  =    {
         }
 
         if (shuffle === 1) {
-            client.musics = shuffleArray(client.musics);
+            client.musics   =   shuffleArray(client.musics);
         }
 
         if (message.channel.type !== 'dm') {

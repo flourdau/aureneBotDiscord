@@ -29,8 +29,9 @@ module.exports = {
 
         }
 
-        if (reaction.message.channel.id !== "862769534757502980" && reaction.emoji.name === "🎁") {
 
+        if (reaction.message.channel.id !== "862769534757502980" && reaction.emoji.name === "🎁") {
+            
             try {
                 await reaction.fetch();
             }
@@ -38,46 +39,52 @@ module.exports = {
                 console.error('Something went wrong when fetching the message: ', error);
                 return;
             }
-    
-            // clone to a message
-            let tmp = reaction.message;
-    
-            if (tmp.content === '') {
-                tmp = reaction.message.attachments.first();
-                
-                if (!tmp) {
-                    tmp = reaction.message.embeds;
-                }
 
-                try {
-                    console.log();
-                    let channel = client.channels.cache.get("862769534757502980");
-                    await channel.send(tmp);
+            if (reaction.count <= 1) { 
+   
+                // clone to a message
+                let tmp = reaction.message;
+        
+                if (tmp.content === '') {
+                    tmp = reaction.message.attachments.first();
+                    
+                    if (!tmp) {
+                        tmp = reaction.message.embeds;
+                    }
+
+                    try {
+                        let channel = client.channels.cache.get("862769534757502980");
+                        await channel.send(tmp);
+                    }
+                    catch (error) {
+                        console.log(error);
+                        return;
+                    }
                 }
-                catch (error) {
-                    console.log(error);
-                    return;
+                else {
+                    try {
+                        let channel = client.channels.cache.get("862769534757502980");
+                        await channel.send(`${tmp}`);
+                    }
+                    catch (error) {
+                        console.log(error);
+                        return;
+                    }
                 }
+                
+                // Reply to a Reaction
+                let str = ` et <@${user.id}> aussi!.. `;
+
+                if (user.id === reaction.message.author.id) {
+                    str = ' ';
+                }
+                reaction.message.reply(`${emojiBot} Merci${str}: )`)
+                .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
+                .catch(console.error);
             }
-            else {
-                try {
-                    console.log();
-                    let channel = client.channels.cache.get("862769534757502980");
-                    await channel.send(`${tmp}`);
-                }
-                catch (error) {
-                    console.log(error);
-                    return;
-                }
-            }
-            
-            // Reply to a Reaction
-            reaction.message.reply(`${emojiBot} Merci et <@${user.id}> aussi!.. : )`)
-            .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
-            .catch(console.error);
-    
-            // Reply to a Message author if diff of react
+
         }
+
 
     }
 
