@@ -15,10 +15,10 @@ sudo apt-get install -y nodejs
 # nvm use --16
 printf "\n- Installation de Node & NMP! ✅\n"
 
-npm i discord.js
-npm i node-pre-gyp@0.17.0
-npm i --save ytdl-core
-npm i --save @discordjs/opus 
+sudo npm i discord.js
+sudo npm i node-pre-gyp@0.17.0
+sudo npm i --save ytdl-core
+sudo npm i --save @discordjs/opus 
 printf "\n- Installation de Discord.js & Youtube-dl-core & NMP! ✅\n"
 
 git clone https://github.com/flourdau/libJS.git lib
