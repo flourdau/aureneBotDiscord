@@ -7,9 +7,14 @@ module.exports  =   {
 	aliases     :   ['de', 'lance'],
 	usage       :   '<min> <max>',	
     guildOnly   :   false,
-	// args     :   true,
     cooldown    :   5,
-	// permissions :   '🌻Administrateur🌻',
+	permissions :   '💗New Link',
+	permissions :   [
+                        '862769533311254548',   //Admin
+                        '862769533278093345',   //New Link
+                        '862769533278093346',   //Link
+                        '862769533278093347'    //Super Link
+                    ],
 
     execute(message, args) {
 

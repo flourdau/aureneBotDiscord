@@ -1,8 +1,8 @@
 const { emojiBot }   =   require('../config.json');
 
-module.exports = {
+module.exports  =   {
 
-	name: 'guildMemberAdd',
+	name    :   'guildMemberAdd',
 
 	async execute(member, client) {
         

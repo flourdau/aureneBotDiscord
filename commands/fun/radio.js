@@ -10,7 +10,12 @@ module.exports  =    {
     guildOnly   :   false,
     args        :   false,
     cooldown    :   5,
-        // permissions  :   '🌻Administrateur🌻',
+	permissions :   [
+                        '862769533311254548',   //Admin
+                        '862769533278093345',   //New Link
+                        '862769533278093346',   //Link
+                        '862769533278093347'    //Super Link
+                    ],
 
 	execute(message, args, client) {
 
@@ -22,7 +27,7 @@ module.exports  =    {
             }
             return array;
         }
-        
+
 
         function parseFiles(audioFiles, connection) {
             const audioFile =   audioFiles.shift();
@@ -30,14 +35,15 @@ module.exports  =    {
             if (audioFile) {
                 return mm.parseFile(pathDir + audioFile).then(metadata => {
                     const duration  =   (Math.floor(metadata.format.duration) * 1000) + 3000;
+                    let stream      =   fs.createReadStream(pathDir + audioFile);
 
-                    broadcast.play(pathDir + audioFile);
-                    connection.play(broadcast);
-                    client.user.setPresence({ activity: {
-                                                name:`${metadata.common.title} - ${metadata.common.artist} 🎶🎵🌟`,
-                                                type:'LISTENING'
-                                            }, 
-                                            status: 'online'});
+                    connection.play(stream);
+                    client.user.setPresence({
+                        activity    :   {
+                            name    :   `${metadata.common.title} - ${metadata.common.artist} 🎶🎵🌟`,
+                            type    :   'LISTENING'
+                        }, 
+                        status      :   'online'});
                     setTimeout(function() {
                         return parseFiles(audioFiles, connection);
                     }, duration);
@@ -46,10 +52,9 @@ module.exports  =    {
             return Promise.resolve();
         }
 
- 
+
         const channelID     =   `868986550367711282`;
         const channel       =   client.channels.resolve(channelID);
-        const broadcast     =   client.voice.createBroadcast();
         let pathDir         =   './musics/';
         let shuffle         =   0;
         let i               =   -1;
@@ -59,7 +64,7 @@ module.exports  =    {
             shuffle =   1;
             args.shift();
         }
-        
+  
         if (args[0]) {
             pathDir =   pathDir.concat(args.join(` `) + `/`);
         }

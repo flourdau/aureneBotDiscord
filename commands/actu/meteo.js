@@ -11,6 +11,13 @@ module.exports	=	{
     guildOnly       :   false,
 	args        	:   true,
 	cooldown        :   30,
+	permissions :   [
+						'862769533311254548',   //Admin
+						'869925004014415952',	//Bots
+						'862769533278093345',   //New Link
+						'862769533278093346',   //Link
+						'862769533278093347'    //Super Link
+					],
 
 	async execute(message, args) {
 		
@@ -19,7 +26,7 @@ module.exports	=	{
 		}
 		
 		if (args[0] === '-full' || args[0] === '-f') {
-			message.channel.send(`ERROR! XD`);
+			message.author.send(`ERROR! XD`);
 			return;
 		}
 		
@@ -33,22 +40,22 @@ module.exports	=	{
 
 		if (args[1] === '-full' || args[1] === '-f') {
 			fields	=	[
-							{ name	:	`\u200B`,		value:meteo.main.feels_like + `° C*Ressenti*`,	inline: true },
-							{ name	:	`\u200B`,		value:`\u200B`, inline: false },
-							{ name	:	`Pression:`,	value:meteo.main.pressure + `hPa`, inline: true },
-							{ name	:	`Humidité:`,	value:meteo.main.humidity + `%`, inline: true },
+							{ name	:	`\u200B`,		value	:	meteo.main.feels_like + `° C*Ressenti*`, inline	:	true },
+							{ name	:	`\u200B`,		value	:	`\u200B`, inline	:	false },
+							{ name	:	`Pression:`,	value	:	meteo.main.pressure + `hPa`, inline	:	true },
+							{ name	:	`Humidité:`,	value	:	meteo.main.humidity + `%`, inline	:	true },
 
-							{ name	:	`\u200B`,		value:`\u200B`, inline: false },
-							{ name	:	`Vitesse:`,		value:meteo.wind.speed + `m/s`, inline: true },
-							{ name	:	`Direction:`,	value:meteo.wind.deg + `°`, inline: true },
+							{ name	:	`\u200B`,		value	:	`\u200B`, inline	:	false },
+							{ name	:	`Vitesse:`,		value	:	meteo.wind.speed + `m/s`, inline	:	true },
+							{ name	:	`Direction:`,	value	:	meteo.wind.deg + `°`, inline	:	true },
 
-							{ name	:	`\u200B`,		value:`\u200B`, inline: false },
-							{ name	:	`Levé:`,		value:meteo.sys.sunrise, inline: true },
-							{ name	:	`Couché:`,		value:meteo.sys.sunset, inline: true }
+							{ name	:	`\u200B`,		value	:	`\u200B`, inline	:	false },
+							{ name	:	`Levé:`,		value	:	meteo.sys.sunrise, inline	:	true },
+							{ name	:	`Couché:`,		value	:	meteo.sys.sunset, inline	:	true }
 						];
 		}
 
-		const meteoEmbed = new MessageEmbed()
+		const meteoEmbed	=	new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle(title)
 			.setURL('https://openweathermap.org/')

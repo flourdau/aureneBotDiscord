@@ -10,7 +10,9 @@ module.exports	=	{
     guildOnly   :   false,
 	args		:   true,
     cooldown    :   5,
-	// permissions :   '🌻Administrateur🌻',
+	permissions :   [
+						'862769533311254548'   //Admin
+					],
 
 	execute(message, args) {
 
@@ -27,7 +29,7 @@ module.exports	=	{
 		delete require.cache[require.resolve(`../${folderName}/${command.name}.js`)];
 
 		try {
-			const newCommand = require(`../${folderName}/${command.name}.js`);
+			const newCommand	=	require(`../${folderName}/${command.name}.js`);
 			message.client.commands.set(newCommand.name, newCommand);
 			message.channel.send(`Command \`${newCommand.name}\` rechargée!`);
 		}

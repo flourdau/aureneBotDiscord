@@ -21,7 +21,7 @@ npm i --save ytdl-core
 npm i --save @discordjs/opus 
 printf "\n- Installation de Discord.js & Youtube-dl-core & NMP! ✅\n"
 
-git clone https://github.com/flourdau/libJS.git ../libJS
+git clone https://github.com/flourdau/libJS.git lib
 printf "\n- Installation de la libJS de senacra! ✅\n"
 printf "\nInstallation terminée\n"
 

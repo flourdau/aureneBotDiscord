@@ -2,6 +2,7 @@ const fetch                 =   require('node-fetch');
 const { APIGW2, emojiBot }  =   require('../../config.json');
 
 module.exports  =    {
+
 	name        :   'age',
 	aliases     :   false,
 	description :   'Play Times in Guild Wars 2 for Senacra!',
@@ -9,7 +10,12 @@ module.exports  =    {
     guildOnly   :   false,
 	args        :   false,	
     cooldown    :   60,
-	// permissions  :   '🌻Administrateur🌻',
+    permissions :   [
+                        '862769533311254548',   //Admin
+                        '862769533278093345',   //New Link
+                        '862769533278093346',   //Link
+                        '862769533278093347'    //Super Link
+                    ],
     
     async execute(message) {
 

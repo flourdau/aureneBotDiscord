@@ -7,7 +7,9 @@ module.exports  =    {
     guildOnly   :   true,
 	args        :   true,	
     cooldown    :   5,
-	// permissions  :   '🌻Administrateur🌻',
+	permissions :   [
+                        '862769533311254548'   //Admin
+                    ],
 
     execute(message, args) {
         message.channel.send(`${args.join(' ')}`);

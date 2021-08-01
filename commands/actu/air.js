@@ -15,6 +15,13 @@ module.exports	=	{
     guildOnly       :   false,
 	args        	:   true,
 	cooldown        :   30,
+	permissions :   [
+						'862769533311254548',   //Admin
+						'869925004014415952',	//Bots
+						'862769533278093345',   //New Link
+						'862769533278093346',   //Link
+						'862769533278093347'    //Super Link
+					],
 
 	async execute(message, args) {
 
@@ -23,7 +30,7 @@ module.exports	=	{
 		}
 		
 		if (args[0] === '-full' || args[0] === '-f') {
-			message.channel.send(`ERROR! XD`);
+			message.author.send(`ERROR! XD`);
 			return;
 		}
 		
@@ -57,7 +64,7 @@ module.exports	=	{
 						];
 		}
 
-		const airEmbed = new MessageEmbed()
+		const airEmbed	=	new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle(title)
 			.setURL('https://openweathermap.org/')

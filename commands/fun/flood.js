@@ -8,8 +8,10 @@ module.exports  =   {
     usage       :   '<max> <"text">',	
     guildOnly   :   false,
 	args        :   true,	
-    cooldown    :   1,
-	permissions :   '🌻Administrateur🌻',
+    cooldown    :   5,
+	permissions :   [
+                        '862769533311254548'   //Admin
+                    ],
 
 	execute(message, args) {
 

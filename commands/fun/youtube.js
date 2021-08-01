@@ -1,4 +1,4 @@
-const  ytdl  = require('ytdl-core');
+const ytdl  =   require('ytdl-core');
 
 module.exports  =    {
 
@@ -9,11 +9,16 @@ module.exports  =    {
     guildOnly   :   false,
     args        :   true,
     cooldown    :   5,
-        // permissions  :   '🌻Administrateur🌻',
+	permissions :   [
+                        '862769533311254548',   //Admin
+                        '862769533278093345',   //New Link
+                        '862769533278093346',   //Link
+                        '862769533278093347'    //Super Link
+                    ],
 
 	execute(message, args, client) {
 
-        let channelID   =   `862769535597281300`;
+        let channelID   =   `868986550367711282`;
         let channel     =   client.channels.resolve(channelID);
         
         if (message.channel.type !== 'dm') {
@@ -22,12 +27,21 @@ module.exports  =    {
         channel.join()
                 .then(connection => {
                     if (!args[1] || args[1] > 96 || args[1] < 18 ) {
-                        args[1] = '96';
+                        args[1] =   '96';
                     }
 
-                    const stream        =   ytdl(args.join(``), { bitrate: args[1] * 1000 });
-                    const dispatcher    =   connection.play(stream);
+                    const stream    =   ytdl(args.join(``), { bitrate: args[1] * 1000 });
+                    ytdl.getInfo(args.join(``)).then(info => {
+                        client.user.setPresence({
+                        activity    :   {
+                            name    :   `${info.videoDetails.title}`,
+                            url     :   `${info.videoDetails.video_url}`,
+                            type    :   'LISTENING'
+                        }, 
+                        status      :   'online'});
+                    });
 
+                    const dispatcher    =   connection.play(stream);
                     dispatcher.on('finish', () => voiceChannel.leave());
                 })
                 .catch(err => console.log(err));

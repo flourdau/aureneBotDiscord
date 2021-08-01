@@ -8,8 +8,14 @@ module.exports  =   {
     usage		:	'<ville> -full',	
     guildOnly	:	false,
     cooldown	:	60,
+	permissions :   [
+                        '862769533311254548',   //Admin
+                        '862769533278093345',   //New Link
+                        '862769533278093346',   //Link
+                        '862769533278093347'    //Super Link
+                    ],
 
-	execute(message, args, client) {
+	async execute(message, args, client) {
         
         if (message.channel.type !== 'dm') {
             message.delete();
@@ -29,7 +35,7 @@ module.exports  =   {
 
         if (args[0]) {
             setTimeout(function() {
-                const cityEmbed = new MessageEmbed()
+                const cityEmbed =   new MessageEmbed()
                     .setColor('#0099ff')
                     .setTitle(args[0])
 

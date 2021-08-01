@@ -9,7 +9,12 @@ module.exports	=	{
     guildOnly	:	false,
 	args		:	false,
     cooldown	:	1,
-	// permissions	:	'🌻Administrateur🌻',
+	permissions :   [
+						'862769533311254548',   //Admin
+						'862769533278093345',   //New Link
+						'862769533278093346',   //Link
+						'862769533278093347'    //Super Link
+					],
 
 	async execute(message) {
 		
@@ -19,7 +24,7 @@ module.exports	=	{
 			message.delete();
 		}
 		if (response.ok) {
-			let file = await response.json();
+			let file	=	await response.json();
 			message.channel.send(file.file);
 		}
 

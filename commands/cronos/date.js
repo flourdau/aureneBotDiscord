@@ -1,4 +1,6 @@
-const { MessageEmbed }		=   require('discord.js');
+const { MessageEmbed }	=   require('discord.js');
+const myDate			=   require('../../lib/myDate.js');
+
 module.exports	=	{
 
 	name		:	'date',
@@ -8,15 +10,21 @@ module.exports	=	{
     guildOnly	:	false,
 	args		:	false,
     cooldown	:	1,
-	// permissions	:	'🌻Administrateur🌻',
+	permissions :   [
+						'862769533311254548',   //Admin
+						'869925004014415952',	//Bots
+						'862769533278093345',   //New Link
+						'862769533278093346',   //Link
+						'862769533278093347'    //Super Link
+					],
 
-	execute(message, args, client) {
+	execute(message) {
 		
 		if (message.channel.type !== 'dm') {
 			message.delete();
 		}
-		const dateEmbed = new MessageEmbed().setColor('#0099ff')
-											.setTitle(`${client.myDate().myDate}`);
+		const dateEmbed	=	new MessageEmbed().setColor('#0099ff')
+												.setTitle(`${myDate.getMyDateTime().myDate}`);
 		message.channel.send(dateEmbed);
 
 	},

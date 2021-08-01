@@ -8,10 +8,15 @@ module.exports	=	{
 	aliases		:	['choix', 'choisi'],
 	description	:	'Repond oui ou non',
     usage		:	false,
-    // guildOnly	:	true,
+    guildOnly	:	true,
 	args		:	false,
     cooldown	:	1,
-	// permissions	:	'🌻Administrateur🌻',
+	permissions :   [
+						'862769533311254548',   //Admin
+						'862769533278093345',   //New Link
+						'862769533278093346',   //Link
+						'862769533278093347'    //Super Link
+					],
 
 	execute(message) {
 

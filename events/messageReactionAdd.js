@@ -1,8 +1,8 @@
 const { emojiBot }   =   require('../config.json');
 
-module.exports = {
+module.exports  =   {
 
-	name: 'messageReactionAdd',
+	name    :   'messageReactionAdd',
 
 	async execute(reaction, user, client) {
 
@@ -16,8 +16,8 @@ module.exports = {
                 return;
             }
             
-            let role = await reaction.message.guild.roles.cache.get("862769533278093345");
-            let member = reaction.message.guild.members.cache.get(user.id);
+            let role    =   await reaction.message.guild.roles.cache.get("862769533278093345");
+            let member  =   reaction.message.guild.members.cache.get(user.id);
             
             try {
                 await member.send(`${emojiBot} Tu possédes un petit pouvoir <@${member.id}>, te voilà automatiquement ${role.name}!`);
@@ -43,17 +43,17 @@ module.exports = {
             if (reaction.count <= 1) { 
    
                 // clone to a message
-                let tmp = reaction.message;
+                let tmp =   reaction.message;
         
                 if (tmp.content === '') {
-                    tmp = reaction.message.attachments.first();
+                    tmp =   reaction.message.attachments.first();
                     
                     if (!tmp) {
-                        tmp = reaction.message.embeds;
+                        tmp =   reaction.message.embeds;
                     }
 
                     try {
-                        let channel = client.channels.cache.get("862769534757502980");
+                        let channel =   client.channels.cache.get("862769534757502980");
                         await channel.send(tmp);
                     }
                     catch (error) {
@@ -63,7 +63,7 @@ module.exports = {
                 }
                 else {
                     try {
-                        let channel = client.channels.cache.get("862769534757502980");
+                        let channel =   client.channels.cache.get("862769534757502980");
                         await channel.send(`${tmp}`);
                     }
                     catch (error) {
@@ -73,7 +73,7 @@ module.exports = {
                 }
                 
                 // Reply to a Reaction
-                let str = ` et <@${user.id}> aussi!.. `;
+                let str =   ` et <@${user.id}> aussi!.. `;
 
                 if (user.id === reaction.message.author.id) {
                     str = ' ';

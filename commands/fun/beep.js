@@ -8,8 +8,13 @@ module.exports	=	{
     usage		:	false,	
     guildOnly	:	false,
 	args		:	false,
-    cooldown	:	1,
-	// permissions	:	'🌻Administrateur🌻',
+    cooldown	:	10,
+	permissions :   [
+						'862769533311254548',   //Admin
+						'862769533278093345',   //New Link
+						'862769533278093346',   //Link
+						'862769533278093347'    //Super Link
+					],
 
 	execute(message) {
 
