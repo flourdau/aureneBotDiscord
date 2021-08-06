@@ -29,7 +29,6 @@ module.exports  =   {
 
         }
 
-
         if (reaction.message.channel.id !== "862769534757502980" && reaction.emoji.name === "🎁") {
             
             try {
@@ -78,13 +77,13 @@ module.exports  =   {
                 if (user.id === reaction.message.author.id) {
                     str = ' ';
                 }
+
                 reaction.message.reply(`${emojiBot} Merci${str}: )`)
-                .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
-                .catch(console.error);
+                                .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
+                                .catch(console.error);
             }
 
         }
-
 
     }
 

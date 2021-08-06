@@ -4,9 +4,9 @@ const mm    =   require('music-metadata');
 module.exports  =    {
 
 	name        :   'radio',
-    aliases     :   ['music'],
+    aliases     :   ['music', 'play'],
 	description :   'Lecture d\'un titre locale...🎵',	
-    usage       :   '<shuffle> <directory name>',	
+    usage       :   '-shuffle <directory name>',	
     guildOnly   :   false,
     args        :   false,
     cooldown    :   5,
@@ -60,7 +60,7 @@ module.exports  =    {
         let i               =   -1;
         client.musics       =   [];
 
-        if (args[0] === 'shuffle') {
+        if (args[0] === '-shuffle') {
             shuffle =   1;
             args.shift();
         }

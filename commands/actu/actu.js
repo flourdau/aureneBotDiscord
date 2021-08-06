@@ -1,11 +1,11 @@
-const { MessageEmbed }		=   require('discord.js');
+const ytpl = require('ytpl');
 
 module.exports  =   {
 
 	name		:	'actu',
 	aliases		:	['news', 'info', 'day'],
 	description	:	'Actualité',
-    usage		:	'<ville> -full',	
+    usage		:	'<ville> --full',	
     guildOnly	:	false,
     cooldown	:	60,
 	permissions :   [
@@ -16,37 +16,39 @@ module.exports  =   {
                         '862769533278093347'    //Super Link
                     ],
 
-
 	async execute(message, args, client) {
-        
+
         if (message.channel.type !== 'dm') {
             message.delete();
 		}
 
-        message.channel.send(`!datetime`);
-
+        const canalID   =   `867622707049660496`;
+        const messageID =   `872539390273003580`;
+        const canal     =   client.channels.resolve(canalID);
+        const playlist  =   await ytpl(`PLCnUnV3yCIYuuHRjVDwiBaRDeSbEbGyZU`, { pages: 1 });
+        const url       =   playlist.url;
+        
         setTimeout(function() {
-            message.channel.send(`https://www.youtube.com/playlist?list=PLCnUnV3yCIYuuHRjVDwiBaRDeSbEbGyZU&playnext=1&index=1`);
-        },      500);
+            canal.messages.fetch(messageID)
+                            .then(message => {message.edit(`${url}&playnext=1&index=1`);});
+        }, 500);
 
-        if (args[1] === '-full' || args[1] === '-f') {
+        if (args.length > 0 && (args[0].search(/[^A-Za-z\s]/) === -1)) {
+            city = args.join(' ');
+            
             setTimeout(function() {
-                message.channel.send('https://www.youtube.com/playlist?list=UUqt99sKYNTxqlHtzV9weUYA&playnext=1&index=1');
-            },      1000);
-        }        
+                const canalLogID    =   `862769536289734669`;
+                const canalLog      =   client.channels.resolve(canalLogID);
 
-        if (args[0]) {
-            setTimeout(function() {
-                const cityEmbed =   new MessageEmbed()
-                    .setColor('#0099ff')
-                    .setTitle(args[0])
-
-                message.channel.send(cityEmbed);
-                message.channel.send(`!meteo ${args[0]} ${args[1]}`);
-                message.channel.send(`!air ${args[0]} ${args[1]}`);
-            },      3000);
+                canalLog.send(`!meteo ${city}`);
+                canalLog.send(`!air ${city}`);
+            }, 3000);
+        }
+        
+        if (!message.author.bot) {
+            message.author.send(`Je viens de up <#867622707049660496>! :) `);
         }
 
-	},
+    },
 
 };
