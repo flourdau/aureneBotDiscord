@@ -16,12 +16,13 @@ module.exports	=	{
 	args        	:   true,
 	cooldown        :   30,
 	permissions :   [
-						'862769533311254548',   //Admin
-						'869925004014415952',	//Bots
-						'862769533278093345',   //New Link
-						'862769533278093346',   //Link
-						'862769533278093347'    //Super Link
+						'862769533311254548',   //	Admin
+						'869925004014415952',	//	Bots
+						'862769533278093347',   //	Super Link
+						'862769533278093346',   //	Link
+						'862769533278093345'	//	New Link
 					],
+
 
 	async execute(message, args, client) {
 
@@ -99,9 +100,9 @@ module.exports	=	{
 										.then(message => {message.edit(cityEmbed);});
 					}
 				}
-
 			}
 		}
+
 	}
 	
 };

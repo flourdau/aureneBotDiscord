@@ -4,6 +4,7 @@ module.exports  =   {
 
 	name    :   'messageReactionAdd',
 
+
 	async execute(reaction, user, client) {
 
         if ((reaction.message.id === "863147783111573545" || reaction.message.id === "862796269960822824"  ) && reaction.emoji.name === "💗") {
@@ -40,7 +41,6 @@ module.exports  =   {
             }
 
             if (reaction.count <= 1) { 
-   
                 // clone to a message
                 let tmp =   reaction.message;
         
@@ -79,8 +79,8 @@ module.exports  =   {
                 }
 
                 reaction.message.reply(`${emojiBot} Merci${str}: )`)
-                                .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
-                                .catch(console.error);
+                                    .then(() => console.log(`Sent a reply to ${user.username} Reaction`))
+                                    .catch(console.error);
             }
 
         }

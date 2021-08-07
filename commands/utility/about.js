@@ -9,12 +9,16 @@ module.exports	=	{
     guildOnly       :   false,
 	args            :   false,
 	cooldown        :   30,
-        
+
+
 	execute(message) {
+
 		if (message.channel.type !== 'dm') {
 			message.delete();
 		}
+
         message.author.send(`${emojiBot} Voici le lien vers mon dépôt github:\n https://github.com/flourdau/aureneBotDiscord!`);
+
 	},
 
 };

@@ -12,14 +12,16 @@ module.exports	=	{
 	args        	:   true,
 	cooldown        :   30,
 	permissions :   [
-						'862769533311254548',   //Admin
-						'869925004014415952',	//Bots
-						'862769533278093345',   //New Link
-						'862769533278093346',   //Link
-						'862769533278093347'    //Super Link
+						'862769533311254548',   //	Admin
+						'869925004014415952',	//	Bots
+						'862769533278093347',   //	Super Link
+						'862769533278093346',   //	Link
+						'862769533278093345'	//	New Link
 					],
 
+
 	async execute(message, args, client) {
+
 		if (message.channel.type !== 'dm') {
 			message.delete();
 		}
@@ -39,7 +41,7 @@ module.exports	=	{
 				lastElemt    =   false;
 			}
 
-			const city = args.join(' ');
+			const city	=	args.join(' ');
 			if (city.search(/[^A-Za-z\s]/) === -1) {
 				let requestURL	=	`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${openweathermap}&units=metric&lang=fr`;
 				let meteo		=	await fetch(requestURL).then(res => res.json())
@@ -93,6 +95,7 @@ module.exports	=	{
 				}
 			}
 		}
+
 	}
 
 };

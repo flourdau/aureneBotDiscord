@@ -8,10 +8,11 @@ module.exports  =   {
     usage		:	false,	
     guildOnly	:	false,
     cooldown	:	60,
-	// permissions :   [
-    //                     '862769533311254548',   //Admin
-    //                     '869925004014415952',	//Bots
-    //                 ],
+	permissions :   [
+                        '862769533311254548',   //Admin
+                        '869925004014415952'	//Bots
+                    ],
+
 
 	async execute(message) {
         

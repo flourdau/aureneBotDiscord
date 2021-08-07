@@ -1,9 +1,10 @@
-const cron              =   require('node-cron');
+const cron  =   require('node-cron');
 
 module.exports	=	{
 
 	name		:	'ready',
 	description	:	'epic games',
+
 
 	execute(client) {
 

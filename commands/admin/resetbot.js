@@ -1,5 +1,4 @@
-const { token }   =   require('../../config.json');
-const { emojiBot }	=	require('../../config.json');
+const { token, emojiBot }	=   require('../../config.json');
 
 module.exports	=	{
 
@@ -10,15 +9,14 @@ module.exports	=	{
     guildOnly   :   true,
 	args		:   false,
     cooldown    :   1,
-	permissions :   [
-						'862769533311254548'   //Admin
-					],
+	permissions :   ['862769533311254548'],	//	Admin
+
 
 	execute(message, NULL, client) {
 
 		message.channel.send(`${emojiBot} Resetting...`)
-				.then(msg => client.destroy(console.log(`${emojiBot} Resetting...`)))
-				.then(() => client.login(token));
+						.then(msg => client.destroy(console.log(`${emojiBot} Resetting...`)))
+						.then(() => client.login(token));
 
 	},
 

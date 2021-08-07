@@ -11,9 +11,12 @@ module.exports  =    {
                         '862769533311254548'   //Admin
                     ],
 
+                    
     execute(message, args) {
+
         message.channel.send(`${args.join(' ')}`);
         message.delete();
+
 	},
 
 };

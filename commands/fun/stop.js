@@ -8,24 +8,25 @@ module.exports	=	{
 	args		:	false,
     cooldown	:	1,
 	permissions :   [
-						'862769533311254548',   //Admin
-						'862769533278093345',   //New Link
-						'862769533278093346',   //Link
-						'862769533278093347'    //Super Link
+						'862769533311254548',   //	Admin
+						'869925004014415952',	//	Bots
+						'862769533278093347',   //	Super Link
+						'862769533278093346',   //	Link
+						'862769533278093345'	//	New Link
 					],
 
-	execute(message, args, client) {
+
+	execute(client) {
 
         const channelID     =   `868986550367711282`;
         const channel       =   client.channels.resolve(channelID);
 
 		channel.leave();
-		client.user.setPresence({
-		activity	:	{
-			name	:	'Hello!',
-			type	:	'CUSTOM_STATUS'
-		}, 
-		status		:	'online'});
+		client.user.setPresence({ activity	:	{
+										name	:	'Hello!',
+										type	:	'CUSTOM_STATUS'
+									}, 
+									status		:	'online'} );
 		return;
 
 	},

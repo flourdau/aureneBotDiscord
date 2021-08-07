@@ -1,4 +1,4 @@
-const ytpl = require('ytpl');
+const ytpl  =  require('ytpl');
 
 module.exports  =   {
 
@@ -9,8 +9,8 @@ module.exports  =   {
     guildOnly	:	false,
     cooldown	:	60,
 	permissions :   [
-                        '862769533311254548',   //Admin
-                        '869925004014415952',	//Bots
+                        '862769533311254548',   //  Admin
+                        '869925004014415952'	//  Bots
                     ],
 
 

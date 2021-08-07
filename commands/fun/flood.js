@@ -9,9 +9,8 @@ module.exports  =   {
     guildOnly   :   false,
 	args        :   true,	
     cooldown    :   5,
-	permissions :   [
-                        '862769533311254548'   //Admin
-                    ],
+	permissions :   ['862769533311254548'], //  Admin
+
 
 	execute(message, args) {
 

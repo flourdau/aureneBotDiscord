@@ -9,15 +9,13 @@ module.exports	=	{
     guildOnly   :   false,
 	args		:   false,
     cooldown    :   1,
-	permissions :   [
-						'862769533311254548'   //Admin
-					],
+	permissions :   ['862769533311254548'],	//	Admin
 
 
 	execute(message) {
 
 		message.channel.send(`${emojiBot} Bye...`)
-				.then(msg => process.exit(console.log(`${emojiBot} Bye...`)));
+						.then(msg => process.exit(console.log(`${emojiBot} Bye...`)));
 
 	},
 

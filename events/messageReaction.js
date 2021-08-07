@@ -1,6 +1,7 @@
-module.exports = {
+module.exports  =   {
 
 	name    :   'message',
+
 
 	async execute(message) {
         

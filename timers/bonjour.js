@@ -1,7 +1,5 @@
-const { MessageEmbed }	=	require('discord.js');
-const cron              =   require('node-cron');
-// const myDate            =   require('../lib/myDate.js');
-const tabBonjour        =   require('../../dicosJSON/bonjour.json');
+const cron          =   require('node-cron');
+const tabBonjour    =   require('../../dicosJSON/bonjour.json');
 
 module.exports	=	{
 

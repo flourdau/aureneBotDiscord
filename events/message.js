@@ -1,9 +1,10 @@
 const { Collection }        =   require('discord.js');
 const { prefix, emojiBot }  =   require('../config.json');
 
-module.exports = {
+module.exports  =    {
 
 	name    :   'message',
+
 
 	async execute(message, client) {
 
@@ -13,11 +14,11 @@ module.exports = {
             return;
         }
 
-        const args  =   message.content.slice(prefix.length).trim().split(/ +/);
+        const args          =   message.content.slice(prefix.length).trim().split(/ +/);
         const commandName   =   args.shift().toLowerCase();
 
         // COMMANDS & ALIASES
-        const command   =   client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+        const command       =   client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
         if (!command) {
             return message.reply('command Invalide!..');
         }

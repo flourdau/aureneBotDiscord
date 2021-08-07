@@ -1,4 +1,4 @@
-const ytpl = require('ytpl');
+const ytpl  =   require('ytpl');
 
 module.exports  =   {
 
@@ -9,12 +9,13 @@ module.exports  =   {
     guildOnly	:	false,
     cooldown	:	60,
 	permissions :   [
-                        '862769533311254548',   //Admin
-                        '869925004014415952',	//Bots
-                        '862769533278093345',   //New Link
-                        '862769533278093346',   //Link
-                        '862769533278093347'    //Super Link
+                        '862769533311254548',   //	Admin
+                        '869925004014415952',	//	Bots
+                        '862769533278093347',   //	Super Link
+                        '862769533278093346',   //	Link
+                        '862769533278093345'	//	New Link
                     ],
+
 
 	async execute(message, args, client) {
 
@@ -34,7 +35,7 @@ module.exports  =   {
         }, 500);
 
         if (args.length > 0 && (args[0].search(/[^A-Za-z\s]/) === -1)) {
-            city = args.join(' ');
+            city    =   args.join(' ');
             
             setTimeout(function() {
                 const canalLogID    =   `862769536289734669`;

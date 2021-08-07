@@ -4,6 +4,7 @@ module.exports  =   {
 
 	name    :   'guildMemberAdd',
 
+
 	async execute(member, client) {
         
         // public channel

@@ -8,6 +8,7 @@ module.exports	=	{
 	usage		:	'<command name>',
 	cooldown	:	5,
 
+
 	execute(message, args) {
 
 		const data			=	[];
@@ -21,9 +22,11 @@ module.exports	=	{
 
 			return message.author.send(data, { split: true })
 				.then(() => {
+
 					if (message.channel.type === 'dm') {
 						return;
 					}
+
 					message.delete();
 					message.reply(`${emojiBot} Je t\'envoi la liste des commands par MP!`);
 				})
@@ -45,9 +48,11 @@ module.exports	=	{
 		if (command.aliases) {
 			data.push(`**Alias :** ${command.aliases.join(', ')}`);
 		}
+
 		if (command.description) {
 			data.push(`**Description :** ${command.description}`);
 		}
+
 		if (command.usage) {
 			data.push(`**Usage :** ${prefix}${command.name} ${command.usage}`);
 		}
@@ -55,6 +60,7 @@ module.exports	=	{
 		data.push(`**Cooldown :** ${command.cooldown || 1} second(s)`);
 		
 		message.channel.send(data, { split: true });
+
 	},
 
 };

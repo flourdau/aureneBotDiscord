@@ -11,14 +11,15 @@ module.exports  =    {
     args        :   false,
     cooldown    :   5,
 	permissions :   [
-                        '862769533311254548',   //Admin
-                        '862769533278093345',   //New Link
-                        '862769533278093346',   //Link
-                        '862769533278093347'    //Super Link
+                        '862769533311254548',   //	Admin
+                        '869925004014415952',	//	Bots
+                        '862769533278093347',   //	Super Link
+                        '862769533278093346',   //	Link
+                        '862769533278093345'	//	New Link
                     ],
 
-	execute(message, args, client) {
 
+	execute(message, args, client) {
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -27,7 +28,6 @@ module.exports  =    {
             }
             return array;
         }
-
 
         function parseFiles(audioFiles, connection) {
             const audioFile =   audioFiles.shift();
@@ -52,7 +52,6 @@ module.exports  =    {
             return Promise.resolve();
         }
 
-
         const channelID     =   `868986550367711282`;
         const channel       =   client.channels.resolve(channelID);
         let pathDir         =   './musics/';
@@ -68,6 +67,7 @@ module.exports  =    {
         if (args[0]) {
             pathDir =   pathDir.concat(args.join(` `) + `/`);
         }
+
         const musicsFolders =   fs.readdirSync(pathDir);
 
         for (const folder of musicsFolders) {
@@ -95,6 +95,7 @@ module.exports  =    {
                     client.musics[++i]  =   `/` + musicFile;
                 }
             }
+
             if (flag === 1) {
                 break;
             }
@@ -108,7 +109,9 @@ module.exports  =    {
         if (message.channel.type !== 'dm') {
             message.delete();
         }
+
         channel.join().then(connection => { parseFiles(client.musics, connection); });
- 	}
+
+    }
 
 };

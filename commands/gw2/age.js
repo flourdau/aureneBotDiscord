@@ -11,11 +11,13 @@ module.exports  =    {
 	args        :   false,	
     cooldown    :   60,
     permissions :   [
-                        '862769533311254548',   //Admin
-                        '862769533278093345',   //New Link
-                        '862769533278093346',   //Link
-                        '862769533278093347'    //Super Link
+                        '862769533311254548',   //	Admin
+                        '869925004014415952',	//	Bots
+                        '862769533278093347',   //	Super Link
+                        '862769533278093346',   //	Link
+                        '862769533278093345'	//	New Link
                     ],
+    
     
     async execute(message) {
 
@@ -26,6 +28,7 @@ module.exports  =    {
         if (message.channel.type !== 'dm') {
             message.delete();
         }
+
         message.channel.send(`${emojiBot} Play Times in Guild Wars 2 for <@${message.author.id}>` + Math.floor(gw2.age / 60 /60 / 24) + " days!..");
 
     },

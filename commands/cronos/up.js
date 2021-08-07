@@ -7,9 +7,8 @@ module.exports  =    {
     usage       :   '<text>',
 	args        :   false,	
     cooldown    :   5,
-	permissions :   [
-                        '862769533311254548'   //Admin
-                    ],
+	permissions :   ['862769533311254548'],	//	Admin
+
 
     execute(message, NULL, client) {
 
@@ -18,7 +17,9 @@ module.exports  =    {
 		if (message.channel.type !== 'dm') {
 			message.delete();
 		}
+
 		message.author.send(dateEmbed);
+
 	},
 
 };
