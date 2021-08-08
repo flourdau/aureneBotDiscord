@@ -1,5 +1,5 @@
 const cron          =   require('node-cron');
-const tabBonjour    =   require('../../dicosJSON/bonjour.json');
+const tabBonjour    =   require('../../../Collections/bonjour.json');
 
 module.exports	=	{
 

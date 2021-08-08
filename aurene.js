@@ -1,4 +1,4 @@
-const myDate                    =   require('../libJS/myDate.js');
+const myDate                    =   require('../../Libs/libJS/myDate.js');
 const fs                        =   require('fs');
 const { Client, Collection }    =   require('discord.js');
 const { token }                 =   require('./config.json');

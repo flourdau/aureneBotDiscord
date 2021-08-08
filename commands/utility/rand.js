@@ -1,5 +1,5 @@
 const { emojiBot }  =   require('../../config.json');
-const myMath		=   require('../../../libJS/myMath.js');
+const myMath		=   require('../../../../Libs/libJS/myMath.js');
 
 module.exports  =   {
 

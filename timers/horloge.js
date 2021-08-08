@@ -1,6 +1,6 @@
 const { MessageEmbed }	=   require('discord.js');
 const cron              =   require('node-cron');
-const myDate            =   require('../../libJS/myDate.js');
+const myDate            =   require('../../../Libs/libJS/myDate.js');
 
 module.exports	=	{
 

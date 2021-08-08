@@ -1,7 +1,7 @@
 const { emojiBot }	=	require('../../config.json');
-const tabOui		=	require('../../../dicosJSON/oui.json');
-const tabNon		=	require('../../../dicosJSON/non.json');
-const myMath		=   require('../../../libJS/myMath.js');
+const tabOui		=	require('../../../../Collections/oui.json');
+const tabNon		=	require('../../../../Collections/non.json');
+const myMath		=   require('../../../../Libs/libJS/myMath.js');
 
 module.exports	=	{
 

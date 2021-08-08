@@ -22,7 +22,7 @@ sudo npm i --save @discordjs/opus
 sudo npm i jsdom
 printf "\n- Installation de Discord.js & Youtube-dl-core & NMP! ✅\n"
 
-git clone https://github.com/flourdau/libJS.git lib
+git clone https://github.com/flourdau/libJS.git ../libs/libJS
 printf "\n- Installation de la libJS de senacra! ✅\n"
 printf "\nInstallation terminée\n"
 

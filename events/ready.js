@@ -1,8 +1,8 @@
 const { emojiBot }      =   require('../config.json');
-const myDate		    =   require('../../libJS/myDate.js');
-const tabBonjour        =   require('../../dicosJSON/bonjour.json');
-const tabAcclamation    =   require('../../dicosJSON/acclamation.json');
-const tabNFSW           =   require('../../dicosJSON/nfsw.json');
+const myDate		    =   require('../../../Libs/libJS/myDate.js');
+const tabBonjour        =   require('../../../Collections/bonjour.json');
+const tabAcclamation    =   require('../../../Collections/acclamation.json');
+const tabNFSW           =   require('../../../Collections/nfsw.json');
 
 module.exports  =   {
 

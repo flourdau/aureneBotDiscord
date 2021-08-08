@@ -1,5 +1,5 @@
 const { MessageEmbed }	=   require('discord.js');
-const myDate			=   require('../../../libJS/myDate.js');
+const myDate			=   require('../../../../Libs/libJS/myDate.js');
 
 module.exports	=	{
 
