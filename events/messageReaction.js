@@ -13,7 +13,7 @@ module.exports  =   {
                     .catch(console.error);
         }
 
-        // Reaction 💗 & crosspost of all messages in channel Gift: 862769534757502980
+        // Reaction 💗 & crosspost of all messages in channel Aurène: 864464984360091668
         if ((message.channel.id === '864464984360091668') && (message.channel.type === 'news')) {
             message.react('💗');
             message.crosspost()

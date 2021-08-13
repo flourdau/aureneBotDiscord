@@ -12,14 +12,14 @@ module.exports  =   {
         // Bonjour
         if ((message.content.toLowerCase().indexOf("bonjour") !== -1) && (!message.author.bot)) {
             setTimeout(function() {
-                message.channel.send(`${emojiBot} ` + tabBonjour[Math.floor(Math.random() * tabBonjour.length)] + `<@${message.author.id}>! : )`)
+                message.reply(`${emojiBot} ${tabBonjour[Math.floor(Math.random() * tabBonjour.length)]}! : )`)
             }, 1000);
         }
 
         // Youpi
         if ((message.content.toLowerCase().indexOf("youpi") !== -1) && (!message.author.bot)) {
             setTimeout(function() {
-                message.channel.send(`${emojiBot} ` + tabAcclamation[Math.floor(Math.random() * tabAcclamation.length)] + `<@${message.author.id}>!`)
+                message.reply(`${emojiBot} ${tabAcclamation[Math.floor(Math.random() * tabAcclamation.length)]}!`)
             }, 1000);
         }
 

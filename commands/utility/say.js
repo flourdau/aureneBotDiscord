@@ -14,8 +14,11 @@ module.exports  =    {
                     
     execute(message, args) {
 
+        if (message.channel.type !== 'dm') {
+            message.delete();
+        }
+
         message.channel.send(`${args.join(' ')}`);
-        message.delete();
 
 	},
 

@@ -1,5 +1,6 @@
-const fs    =   require('fs');
-const mm    =   require('music-metadata');
+const fs        =   require('fs');
+const mm        =   require('music-metadata');
+const myArray   =   require('../../../../Libs/libJS/myArray.js');
 
 module.exports  =    {
 
@@ -20,14 +21,6 @@ module.exports  =    {
 
 
 	execute(message, args, client) {
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
 
         function parseFiles(audioFiles, connection) {
             const audioFile =   audioFiles.shift();
@@ -103,7 +96,7 @@ module.exports  =    {
         }
 
         if (shuffle === 1) {
-            client.musics   =   shuffleArray(client.musics);
+            client.musics   =   myArray.shuffleArray(client.musics);
         }
 
         if (message.channel.type !== 'dm') {

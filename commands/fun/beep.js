@@ -19,6 +19,10 @@ module.exports	=	{
 					
 	execute(message) {
 
+		if (message.channel.type !== 'dm') {
+			message.delete();
+		}
+
 		message.channel.send(`${emojiBot} Boop!`);
 
 	},

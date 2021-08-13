@@ -26,10 +26,10 @@ module.exports	=	{
 		const nb	=	myMath.getRandomArbitrary(0, 2);
 
 		if (nb) {
-		    message.channel.send(`${emojiBot} ` + tabOui[Math.floor(Math.random() * tabOui.length)] + `<@${message.author.id}>! : )`);
+		    message.reply(`${emojiBot} ` + tabOui[Math.floor(Math.random() * tabOui.length)] + `! : )`);
 		}
 		else {
-			message.channel.send(`${emojiBot} ` + tabNon[Math.floor(Math.random() * tabNon.length)] + `<@${message.author.id}>! : )`);			
+			message.reply(`${emojiBot} ` + tabNon[Math.floor(Math.random() * tabNon.length)] + `! : )`);			
 		}
 
 	},

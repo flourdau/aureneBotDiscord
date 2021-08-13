@@ -1,7 +1,7 @@
-const myDate                    =   require('../../Libs/libJS/myDate.js');
 const fs                        =   require('fs');
 const { Client, Collection }    =   require('discord.js');
 const { token }                 =   require('./config.json');
+const myDate                    =   require('../../Libs/libJS/myDate.js');
 
 const client                    =   new Client({ partials   :   [
                                                                     "GUILD_MEMBER",

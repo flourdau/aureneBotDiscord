@@ -14,7 +14,7 @@ module.exports	=	{
             const canalID       =   `867622707049660496`;
             const messageID     =   `872539388909879348`;
             const canal         =   client.channels.resolve(canalID);
-            const horlogeEmbed	=	new MessageEmbed().setColor('#0099ff')
+            const horlogeEmbed	=   new MessageEmbed().setColor('#0099ff')
                                                         .setTitle(`${myDate.getMyDateTime().myDate} ${myDate.getMyDateTime().myHour}`);
 
             canal.messages.fetch(messageID)

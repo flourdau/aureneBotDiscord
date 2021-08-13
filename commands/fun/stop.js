@@ -21,6 +21,10 @@ module.exports	=	{
         const channelID     =   `868986550367711282`;
         const channel       =   client.channels.resolve(channelID);
 
+		if (message.channel.type !== 'dm') {
+			message.delete();
+		}
+
 		channel.leave();
 		client.user.setPresence({ activity	:	{
 										name	:	'Hello!',
